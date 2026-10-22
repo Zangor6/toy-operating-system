@@ -26,17 +26,22 @@ SECTIONS {
         *(.text)
     }
 
-    // Read-only data
+    /* Read-only data */
     .rodata BLOCK(4K) : ALIGN(4K) {
         *(.rodata)
     }
 
-    // Read-write data (uninitialized) and stack
-    .bss BLOCK(4K) : ALIGN(4K){
+    /* Read-write data (initialized) */
+    .data BLOCK(4k) : ALIGN(4K) {
+        *(.data)
+    }
+
+    /* Read-write data (uninitialized) and stack */
+    .bss BLOCK(4K) : ALIGN(4K) {
         *(COMMON)
         *(.bss)
     }
 
     /* The compiler may produce other sections, by default it will put them in 
-       a segment with the same name. Add stuff here as needed.
+       a segment with the same name. Add stuff here as needed. */
 }
